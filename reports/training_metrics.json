@@ -1,0 +1,119 @@
+{
+  "experiment": {
+    "run_at_utc": "2026-10-10T17:55:23.332587+00:00",
+    "dataset": "Fashion-MNIST (Keras)",
+    "seed": 42,
+    "train_samples": 60000,
+    "test_samples": 10000,
+    "validation_fraction": 0.1,
+    "batch_size": 256,
+    "ae_epochs_requested": 6,
+    "vae_epochs_requested": 8,
+    "ae_epochs_completed": 6,
+    "vae_epochs_completed": 8,
+    "input_shape": [
+      28,
+      28,
+      1
+    ],
+    "optimizer": "Adam (default learning rate)",
+    "model_float_dtype": "float32",
+    "runtime": {
+      "python": "3.12.14",
+      "tensorflow": "2.21.0",
+      "platform": "Windows-11-10.0.26300-SP0",
+      "devices": [
+        "/physical_device:CPU:0"
+      ]
+    }
+  },
+  "training": {
+    "ae_seconds": 14.078250900027342,
+    "vae_seconds": 27.77727550000418,
+    "ae_history": {
+      "loss": [
+        0.44990187883377075,
+        0.3501673638820648,
+        0.3283669948577881,
+        0.3167445659637451,
+        0.31019845604896545,
+        0.30604106187820435
+      ],
+      "val_loss": [
+        0.37367939949035645,
+        0.33862245082855225,
+        0.3242860436439514,
+        0.3157903552055359,
+        0.3104870319366455,
+        0.30709752440452576
+      ]
+    },
+    "vae_history": {
+      "kl": [
+        12.39892292022705,
+        7.223829746246338,
+        6.625852584838867,
+        6.342147350311279,
+        6.216758728027344,
+        6.194986820220947,
+        6.209383964538574,
+        6.256446361541748
+      ],
+      "loss": [
+        342.4772644042969,
+        288.59930419921875,
+        283.1856689453125,
+        280.5400390625,
+        278.5605163574219,
+        276.6341552734375,
+        274.9345397949219,
+        273.57794189453125
+      ],
+      "reconstruction": [
+        330.0784606933594,
+        281.3755187988281,
+        276.5596618652344,
+        274.1978759765625,
+        272.3437805175781,
+        270.4391174316406,
+        268.7251892089844,
+        267.3215026855469
+      ]
+    }
+  },
+  "evaluation": {
+    "split": "test",
+    "vae_reconstruction_method": "decoder posterior mean (deterministic)",
+    "ae": {
+      "mae": 0.08203490078449249,
+      "mse": 0.020293446257710457,
+      "binary_crossentropy_sum_per_image": 240.54849243164062
+    },
+    "vae": {
+      "mae": 0.10861406475305557,
+      "mse": 0.03298722207546234,
+      "reconstruction_loss_sum_per_image": 266.9862060546875,
+      "kl_divergence_per_image": 6.301778316497803,
+      "elbo_loss_per_image": 273.2879843711853
+    },
+    "generation": {
+      "generated_samples": 128,
+      "reference_samples": 1000,
+      "pairwise_pixel_mae_pairs": 4096,
+      "mean_pairwise_pixel_mae": 0.1567246913909912,
+      "mean_nearest_reference_subset_pixel_mae": 0.07684852261445485,
+      "min_nearest_reference_subset_pixel_mae": 0.0370311476290226
+    }
+  },
+  "models": {
+    "ae_parameters": 25888,
+    "vae_encoder_parameters": 100996,
+    "vae_decoder_parameters": 101520,
+    "vae_total_parameters": 202516,
+    "ae_float32_weights_bytes": 103552,
+    "vae_float32_weights_bytes": 810064,
+    "ae_file_bytes": 338597,
+    "vae_encoder_file_bytes": 427330,
+    "vae_decoder_file_bytes": 425632
+  }
+}
