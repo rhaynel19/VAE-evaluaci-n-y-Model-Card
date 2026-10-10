@@ -9,13 +9,14 @@ import matplotlib.pyplot as plt
 from matplotlib.backends.backend_pdf import PdfPages
 
 ROOT = Path(__file__).resolve().parents[1]
+DEFAULT_REPO_URL = "https://github.com/rhaynel19/VAE-evaluaci-n-y-Model-Card"
 
 
 def main() -> None:
     parser = argparse.ArgumentParser(description="Genera un informe PDF breve del experimento.")
     parser.add_argument(
         "--repo-url",
-        default="Pendiente de publicar: el workspace aún no tiene URL de repositorio",
+        default=DEFAULT_REPO_URL,
         help="URL pública del repositorio que se incluirá en el informe",
     )
     parser.add_argument(
@@ -25,6 +26,8 @@ def main() -> None:
         help="Ruta del PDF de salida",
     )
     args = parser.parse_args()
+    if not args.repo_url.startswith(("https://", "http://")):
+        parser.error("--repo-url debe ser una URL HTTP o HTTPS.")
 
     metrics_path = ROOT / "reports" / "training_metrics.json"
     if not metrics_path.exists():
@@ -45,7 +48,14 @@ def main() -> None:
         figure.text(0.08, 0.955, "INF-8239 · Unidad 03 · Ejercicio 06", fontsize=16, weight="bold")
         figure.text(0.08, 0.925, "VAE, evaluación y Model Card", fontsize=13)
         figure.text(0.08, 0.895, "Autor académico: Edwin Ramón José Nolasco", fontsize=9)
-        figure.text(0.08, 0.865, f"Repositorio: {args.repo_url}", fontsize=8, wrap=True)
+        figure.text(
+            0.08,
+            0.865,
+            f"Repositorio: {args.repo_url}",
+            fontsize=8,
+            wrap=True,
+            url=args.repo_url,
+        )
         figure.text(0.08, 0.83, "Diseño experimental", fontsize=11, weight="bold")
         design = (
             f"Dataset: {experiment['dataset']}; entrenamiento={experiment['train_samples']:,}, "
